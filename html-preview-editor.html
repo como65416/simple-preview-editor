@@ -1,0 +1,44 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <script src="./bower_components/vue/dist/vue.min.js"></script>
+  <script src="./bower_components/ace-builds/src-min-noconflict/ace.js"></script>
+  <style type="text/css" media="screen">
+    #main {
+        display: grid;
+        grid-template-columns: 50% 50%;
+        height:94%;
+    }
+
+    #editor {
+        height: 96%;
+        font-size: 16px;
+        display:inline-block;
+        border-radius: 5px;
+    }
+
+    #preview-frame {
+        height: 96%;
+        display:inline-block;
+        border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <h2> HTML Privew Editor </h2>
+	<div id="main">
+     <div id="editor" class="editor"></div>
+     <iframe id="preview-frame" srcdoc=""></iframe>
+	</div>
+
+	<script>
+    var editor = ace.edit("editor");
+    editor.setTheme("ace/theme/monokai");
+    editor.session.setMode("ace/mode/html");
+    editor.on('change', function () {
+      document.getElementById("preview-frame").setAttribute("srcdoc", editor.getValue());
+    });
+    editor.setValue('<strong>Hello</strong> <span style="color:red;">World</span>');
+	</script>
+</body>
+</html>

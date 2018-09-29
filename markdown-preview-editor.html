@@ -1,0 +1,53 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="./bower_components/github-markdown-css/github-markdown.css">
+  <script src="./bower_components/showdown/dist/showdown.min.js"></script>
+  <script src="./bower_components/vue/dist/vue.min.js"></script>
+  <script src="./bower_components/ace-builds/src-min-noconflict/ace.js"></script>
+  <style type="text/css" media="screen">
+    #main {
+      display: grid;
+      grid-template-columns: 50% 50%;
+      height:94%;
+    }
+
+    #editor {
+        height: 96%;
+        font-size: 16px;
+        display:inline-block;
+        border-radius: 5px;
+    }
+
+    #preview {
+        height: 93%;
+        display:inline-block;
+        border-radius: 5px;
+        border: 1px;
+        border-style: solid;
+        padding: 15px;
+        overflow: scroll;
+    }
+  </style>
+</head>
+<body>
+  <h2> Markdown Privew Editor </h2>
+	<div id="main">
+     <div id="editor" class="editor"></div>
+     <div id="preview" class="markdown-body" srcdoc=""></iframe>
+	</div>
+
+	<script>
+    var converter = new showdown.Converter();
+    converter.setOption('emoji', true);
+
+    var editor = ace.edit("editor");
+    editor.setTheme("ace/theme/monokai");
+    editor.session.setMode("ace/mode/markdown");
+    editor.on('change', function () {
+      document.getElementById("preview").innerHTML = converter.makeHtml(editor.getValue());
+    });
+    editor.setValue('# Hello Markdown :+1:');
+	</script>
+</body>
+</html>
