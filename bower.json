@@ -17,7 +17,6 @@
   "dependencies": {
     "ace-builds": "^1.4.1",
     "showdown": "^1.8.6",
-    "emoji-js": "^0.3.0",
     "github-markdown-css": "^2.10.0"
   }
 }
